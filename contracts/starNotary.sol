@@ -8,9 +8,10 @@ contract StarNotary is ERC721 {
         string name;
     }
 
-//  Add a name and a symbol for your starNotary tokens
-
-//
+    //  Add a name and a symbol for your starNotary tokens
+    string public name = "Star Token Udacity";
+    string public symbol = "STU";
+    //
 
     mapping(uint256 => Star) public tokenIdToStarInfo;
     mapping(uint256 => uint256) public starsForSale;
@@ -23,9 +24,15 @@ contract StarNotary is ERC721 {
         _mint(msg.sender, _tokenId);
     }
 
-// Add a function lookUptokenIdToStarInfo, that looks up the stars using the Token ID, and then returns the name of the star.
-
-//
+    // Add a function lookUptokenIdToStarInfo, that looks up the stars using the Token ID, and then returns the name of the star.
+    function _tokenIdExist(uint256 _tokenId) internal view returns (bool) {
+        return bytes(tokenIdToStarInfo[_tokenId].name).length > 0;
+    }
+    function lookUptokenIdToStarInfo(uint256 _tokenId) public view returns (string) {
+        require(_tokenIdExist(_tokenId));
+        return tokenIdToStarInfo[_tokenId].name;
+    }
+    //
 
     function putStarUpForSale(uint256 _tokenId, uint256 _price) public {
         require(ownerOf(_tokenId) == msg.sender);
