@@ -68,9 +68,9 @@ const App = {
     createStar();
   },
 
-  lookUpStar: function () {
-    lookUpStar();
-  }
+  tokenIdToStarInfo: function () {
+    tokenIdToStarInfo();
+  },
 
 }
 
